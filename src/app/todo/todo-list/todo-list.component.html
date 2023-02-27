@@ -1,0 +1,53 @@
+<div>
+    <div *ngFor="let data of dataArray">
+        <fieldset *ngIf="!data.isEditing" [ngStyle]="{'backgroundColor': data.status == 'done' ? '#32CD32' : ''}">
+            <div class="data-main-val">
+                <div class="data-val">
+                    <span class="span-val">
+                        {{data.task}}
+                    </span>
+                    <span class="span-val">
+                        {{data.timeRequired}}
+                    </span>
+                    <span class="span-val">
+                        {{data.priority}}
+                    </span>
+                </div>
+                <div class="data-btn-val">
+                    <!-- <button *ngIf="data.status !== 'done'" [class]="data.status !== 'done' ? 'btn btn-success btn-val' : 'btn btn-success btn-done'"
+                        (click)="doneTodo(data.id)"><i class="fa-solid fa-check"></i></button> -->
+                    <button *ngIf="data.status !== 'done'" class="btn btn-success btn-val"
+                        (click)="doneTodo(data.id)"><i class="fa-solid fa-check"></i></button>
+                    <button [class]="data.status !== 'done' ? 'btn btn-primary btn-val' : 'btn btn-primary btn-done'" (click)="editTodo(data.id)"><i
+                            class="fa-solid fa-pen"></i></button>
+                    <button [class]="data.status !== 'done' ? 'btn btn-danger btn-val' : 'btn btn-danger btn-done'" (click)="deleteTodo(data.id)"><i
+                            class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+        </fieldset>
+
+        <form #taskForm="ngForm" [formGroup]="toDoForm" (ngSubmit)="onSubmitEditTask(data.id)">
+            <fieldset *ngIf="data.isEditing" [ngStyle]="{'backgroundColor': data.status == 'done' ? '#32CD32' : ''}">
+                <div class="row">
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" placeholder="Task" formControlName="task">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" placeholder="Estimated Time"
+                            formControlName="timeRequired">
+                    </div>
+                    <div class="col-md-3">
+                        <select type="select" class="form-control" id="exampleInputPassword1" placeholder="Priority"
+                            formControlName="priority">
+                            <option selected>select</option>
+                            <option value="low">low</option>
+                            <option value="medium">medium</option>
+                            <option value="high">high</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="col-md-3 btn btn-primary">Submit</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

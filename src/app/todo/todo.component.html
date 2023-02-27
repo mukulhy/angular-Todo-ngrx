@@ -1,0 +1,36 @@
+
+<div class="container">
+    <h1 style="text-align: center; font-weight: 700; color:#d9d9d9 ;">Hi Developer</h1>
+    <div class="TodoList">
+        <div>
+            <form #taskForm="ngForm" [formGroup]="toDoForm" (ngSubmit)="onSubmitTask()">
+                <fieldset>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" placeholder="Task" formControlName="task">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" placeholder="Estimated Time"
+                                formControlName="timeRequired">
+                        </div>
+                        <div class="col-md-3">
+                            <select type="select" class="form-control" id="exampleInputPassword1" placeholder="Priority"
+                                formControlName="priority">
+                                <option selected>select</option>
+                                <option value="low">low</option>
+                                <option value="medium">medium</option>
+                                <option value="high">high</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="col-md-3 btn btn-success">Create</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div style="text-align: center;">
+            <!-- <app-todo-list [todoFormData] = "toDoForm"></app-todo-list> -->
+            <app-todo-list></app-todo-list>
+        </div>
+    </div>
+    
+</div>
